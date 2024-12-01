@@ -1,4 +1,4 @@
-.. |badge_pipeline| image:: https://github.com/tattler-community/bulksms/badges/main/pipeline.svg
+.. |badge_pipeline| image:: https://github.com/tattler-community/bulksms/actions/workflows/python-package.yml/badge.svg
 
 .. |badge_coverage| image:: https://github.com/tattler-community/bulksms/badges/main/coverage.svg
 
