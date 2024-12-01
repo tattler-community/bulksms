@@ -1,6 +1,7 @@
 .. |badge_pipeline| image:: https://github.com/tattler-community/bulksms/actions/workflows/python-package.yml/badge.svg
 
-.. |badge_coverage| image:: https://github.com/tattler-community/bulksms/badges/main/coverage.svg
+.. |badge_coverage| image:: https://codecov.io/gh/tattler-community/bulksms/graph/badge.svg?token=neeCjCNfms
+   :target: https://codecov.io/gh/tattler-community/bulksms
 
 .. |badge_release| image:: https://img.shields.io/badge/Latest%20Release-1.0.0-blue
 
