@@ -1,0 +1,30 @@
+include-package-data = true
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bulksms"
+version = "1.0.0"
+authors = [{name = "Michele Mazzucchi", email = "support@tattler.dev"}]
+# have license information implicitly loaded from LICENSE* file
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: POSIX",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Topic :: Communications",
+    ]
+description = "Python library to send SMS messages to mobile."
+readme = "README.rst"
+requires-python = ">= 3.9"
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/tattler-community/bulksms"
+Issues = "https://github.com/tattler-community/bulksms/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
