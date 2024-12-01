@@ -18,12 +18,8 @@
 1. `👀 What is bulksms?`_
 2. `💄 Requirements`_
 3. `🚀 Quick start`_
-4. `📋 Templates`_
-5. `📸 Live previews`_
-6. `💙 Help us be better`_
-7. `🎖️ License`_
-8. `📈 Enterprise users`_
-9. `📌 Links`_
+4. `💙 Help us be better`_
+5. `🎖️ License`_
 
 👀 What is bulksms?
 ===================
