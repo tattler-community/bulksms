@@ -1,6 +1,6 @@
-.. |badge_pipeline| image:: https://github.com/tattler-community/badges/main/pipeline.svg
+.. |badge_pipeline| image:: https://github.com/tattler-community/bulksms/badges/main/pipeline.svg
 
-.. |badge_coverage| image:: https://github.com/tattler-community/badges/main/coverage.svg
+.. |badge_coverage| image:: https://github.com/tattler-community/bulksms/badges/main/coverage.svg
 
 .. |badge_release| image:: https://img.shields.io/badge/Latest%20Release-1.0.0-blue
 
