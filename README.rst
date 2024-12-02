@@ -25,7 +25,7 @@
 👀 What is bulksms?
 ===================
 
-`bulksms` is a simple python library to send SMS messages from any python application easily:
+``bulksms`` is the simplest way to text people (send SMS) via python:
 
 .. code-block:: python
 
@@ -35,7 +35,7 @@
 
    bsms.send('+123456789', 'Hello world! 👋🏻')
 
-`bulksms` uses [BulkSMS.com](https://www.bulksms.com) to deliver SMS.
+``bulksms`` uses `BulkSMS.com <https://www.bulksms.com>`_ to deliver SMS.
 
 This library allows you to:
 
@@ -51,13 +51,13 @@ This library allows you to:
 
 - You need an account at BulkSMS.com with some delivery credits
 - If you want to use custom sender IDs (e.g. your company name or your own mobile number), you need to have them configured in your BulkSMS account
-- You need internet connectivity and HTTPS open towards `api.bulksms.com` to reach the delivery API
+- You need internet connectivity and HTTPS open towards ``api.bulksms.com`` to reach the delivery API
 
 
 🚀 Quick start
 =================
 
-Install the `bulksms` library into it:
+Install the ``bulksms`` library into it:
 
 .. code-block:: bash
 
@@ -117,16 +117,16 @@ And here's some inspection use-cases:
 
 Here's how you can help:
 
-- ⭐️ star our `repository <https://github.com/tattler-community/tattler-community/>`_ if you like tattler. That's our go-to place whenever we feel sad! 😁
-- Post about bulksms online.
+- ⭐️ star our `repository <https://github.com/tattler-community/bulksms/>`_ if you like bulksms.
+- Mention bulksms in any of your online posts so people find out about it.
 
 And if you're a developer:
 
-- Report any `issue <https://github.com/tattler-community/tattler-community/issues>`_ in our code or docs. We take those seriously.
+- Report any `issue <https://github.com/tattler-community/bulksms/issues>`_ in our code or docs. We take those seriously.
 - Package bulksms for your distribution. Else Ubuntu, Debian, CentOS and FreeBSD will serve the most people.
 
 
 🎖️ License
 =============
 
-`bulksms` is open-source software (BSD 3-clause license).
+``bulksms`` is open-source software (BSD 3-clause license).
