@@ -5,7 +5,7 @@
 
 .. |badge_release| image:: https://img.shields.io/badge/Latest%20Release-1.0.0-blue
 
-.. |badge_pyver| image:: https://img.shields.io/badge/py-3.9%20|%203.10%20|%203.12%20-blue
+.. |badge_pyver| image:: https://img.shields.io/badge/py-3.9%20|%203.10%20%20|3.11|%203.12%20-blue
 
 .. |badge_license| image:: https://img.shields.io/badge/license-BSD_3--clause-blue
 
