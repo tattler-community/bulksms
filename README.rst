@@ -37,16 +37,19 @@
 
 ``bulksms`` uses `BulkSMS.com <https://www.bulksms.com>`_ to deliver SMS.
 
+Features
+--------
+
 This library allows you to:
 
 - Send SMS to one recipient
 - Bulk-send an SMS to many recipients at once
-- Send "long SMS" exceeding the single-message length of 160c, with SMS concatenation
-- Send messages with plain text (160 characters/message) or Unicode, e.g. emojis (67 characters/message)
-- Customize the delivery type to trade time with cost
-- Customize the sender ID
-- Look up the delivery status of a previous message
 - Look up the delivery cost of a previous message
+- Look up the delivery status of a previous message
+- Customize the delivery type to trade time with cost
+- Customize the sender ID e.g. to your mobile number or a company name
+- Send "long SMS" exceeding the single-message length, using SMS concatenation
+- Send messages with plain text (160 characters/message) or Unicode, e.g. emojis (67 characters/message)
 
 💄 Requirements
 ==================
