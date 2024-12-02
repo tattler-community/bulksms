@@ -40,4 +40,5 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
     - name: Test packaging
+      run: |
         python -m build
