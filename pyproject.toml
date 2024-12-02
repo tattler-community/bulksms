@@ -17,7 +17,7 @@ classifiers = [
     "Environment :: Console",
     "Topic :: Communications",
     ]
-description = "Python library to send SMS messages to mobile."
+description = "The simplest way to text people (send SMS) via python."
 readme = "README.rst"
 requires-python = ">= 3.9"
 dependencies = []
