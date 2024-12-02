@@ -17,7 +17,7 @@
 ====================
 
 1. `👀 What is bulksms?`_
-2. `💄 Requirements`_
+2. `📌 Requirements`_
 3. `🚀 Quick start`_
 4. `💙 Help us be better`_
 5. `🎖️ License`_
@@ -51,7 +51,7 @@ This library allows you to:
 - Send "long SMS" exceeding the single-message length, using SMS concatenation
 - Send messages with plain text (160 characters/message) or Unicode, e.g. emojis (67 characters/message)
 
-💄 Requirements
+📌 Requirements
 ==================
 
 - Python version between 3.9 and 3.12
