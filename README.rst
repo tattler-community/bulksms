@@ -5,7 +5,7 @@
 
 .. |badge_release| image:: https://img.shields.io/badge/Latest%20Release-1.0.0-blue
 
-.. |badge_pyver| image:: https://img.shields.io/badge/py-3.9%20|%203.10%20|%203.11%20-blue
+.. |badge_pyver| image:: https://img.shields.io/badge/py-3.9%20|%203.10%20|%203.12%20-blue
 
 .. |badge_license| image:: https://img.shields.io/badge/license-BSD_3--clause-blue
 
@@ -49,8 +49,9 @@ This library allows you to:
 💄 Requirements
 ==================
 
-- You need an account at BulkSMS.com with some delivery credits
-- If you want to use custom sender IDs (e.g. your company name or your own mobile number), you need to have them configured in your BulkSMS account
+- Python version between 3.9 and 3.12
+- An account at `BulkSMS.com <https://www.bulksms.com>`_ with some delivery credits
+- If you want to use custom sender IDs (e.g. your company name or your own mobile number), you need to have them configured in your BulkSMS account.
 - You need internet connectivity and HTTPS open towards ``api.bulksms.com`` to reach the delivery API
 
 
