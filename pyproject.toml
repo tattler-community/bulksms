@@ -11,6 +11,7 @@ authors = [{name = "Michele Mazzucchi", email = "support@tattler.dev"}]
 # have license information implicitly loaded from LICENSE* file
 classifiers = [
     "License :: OSI Approved :: BSD License",
+    "Intended Audience :: Developers",
     "Programming Language :: Python :: 3 :: Only",
     "Operating System :: POSIX",
     "Development Status :: 5 - Production/Stable",
