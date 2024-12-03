@@ -12,6 +12,7 @@ print(res)
 import logging
 import json
 import base64
+import string
 from typing import Optional, Mapping, Iterable, Union, Any
 
 import urllib.request
@@ -22,9 +23,20 @@ from bulksms.utils import getenv, normalize_recipient
 # See https://www.bulksms.com/pricing/sms-routing.htm
 ROUTING_GROUPS = [ 'ECONOMY', 'STANDARD', 'PREMIUM' ]
 
+# see https://www.etsi.org/deliver/etsi_gts/03/0338/05.00.00_60/gsmts_0338v050000p.pdf
+GSM_0338_7BIT_ALPHABET = set(string.ascii_letters + string.digits + "@£$¥èéùìòÇ\nØø\rÅåΔ_ΦΓΛΩΠΨΣΘΞ ÆæßÉ !\"#¤%&'()*+,-./:;<=>?¡ÄÖÑÜ`¿äöñüà")
+
 logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
 
+def is_gsm7(text: str) -> bool:
+    """Return whether a string is encodable with 7 bit in GSM.
+    
+    :param text:    The text to check.
+    
+    :return:        True iff the string can be encoded with the GSM7 alphabet.
+    """
+    return not (set(text) - GSM_0338_7BIT_ALPHABET)
 
 class BulkSMS:
     """Holds an authenticated session with BulkSMS.com's JSON API.
@@ -155,11 +167,7 @@ class BulkSMS:
         if isinstance(recipients, str):
             recipients = [recipients]
         recipients = [normalize_recipient(r) for r in recipients]
-        try:
-            content.encode('ascii')
-            enc_type = 'TEXT'
-        except UnicodeEncodeError:
-            enc_type = 'UNICODE'
+        enc_type = 'TEXT' if is_gsm7(content) else 'UNICODE'
         params = {
             'to': recipients,
             'encoding': enc_type,

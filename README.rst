@@ -3,7 +3,7 @@
 .. |badge_coverage| image:: https://codecov.io/gh/tattler-community/bulksms/graph/badge.svg?token=neeCjCNfms
    :target: https://codecov.io/gh/tattler-community/bulksms
 
-.. |badge_release| image:: https://img.shields.io/badge/Latest%20Release-1.0.0-blue
+.. |badge_release| image:: https://img.shields.io/badge/Latest%20Release-1.1.1-blue
 
 .. |badge_pyver| image:: https://img.shields.io/badge/py-3.9%20|%203.10%20|%203.11%20|%203.12-blue
 
