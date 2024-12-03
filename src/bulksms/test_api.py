@@ -101,15 +101,19 @@ class BulkSMSTest(unittest.TestCase):
             for content, want_encoding in {
                 '': 'TEXT',
                 'My msg': 'TEXT',
+                'Schöne Äntenstraße mit Büchern': 'TEXT',
                 '🙂': 'UNICODE',
-                'Lies bücher': 'UNICODE' }.items():
+                'par []': 'UNICODE',
+                'Some greek Δ_ΦΓΛΘΞΩΨΣ': 'TEXT',
+                '''à&\'ü \nΦ¡_É/é¥ΠäÅ¿Ä"Λ\rØè`!åÖ(ÆΣ:£%+ Ψ;Ω>ÇÜæ@ßò,Ξù)ÑΓ*ìΔ=$#ö<¤-Θøñ.?''': 'TEXT'
+                  }.items():
                 bsms.send('1234', content)
                 self.assertEqual(1, muop.call_count)
                 self.assertIsInstance(muop.call_args.args[0], urllib.request.Request)
                 jdata = json.loads(muop.call_args.args[0].data.decode())
                 self.assertIsInstance(jdata, dict)
                 self.assertIn("encoding", jdata)
-                self.assertEqual(jdata["encoding"], want_encoding)
+                self.assertEqual(jdata["encoding"], want_encoding, msg=f"""Encoding mismatch (want {want_encoding}, have {jdata["encoding"]}) with string '{content}'""")
                 self.assertIn("body", jdata)
                 self.assertEqual(jdata["body"], content)
                 muop.reset_mock()
