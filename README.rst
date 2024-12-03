@@ -97,7 +97,8 @@ Here's some more advanced use-cases to deliver SMS:
    # send a text to a bunch of receivers in bulk
    bsms.send(['+123456789', '+4985296345', '+44785612458'], 'Hello world! 👋🏻')
 
-   # send a text message with top priority
+   # send a text message with top priority.
+   # Unless priority is requested, the default 'routingGroup' set in the BulkSMS account is used.
    bsms.send('+123456789', 'Hello world! 👋🏻', priority=True)
 
 And here's some inspection use-cases:
