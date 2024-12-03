@@ -21,7 +21,6 @@ from bulksms.utils import getenv, normalize_recipient
 
 # See https://www.bulksms.com/pricing/sms-routing.htm
 ROUTING_GROUPS = [ 'ECONOMY', 'STANDARD', 'PREMIUM' ]
-DEFAULT_ROUTING_GROUP = ROUTING_GROUPS[0]
 
 logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
@@ -60,11 +59,11 @@ class BulkSMS:
         if routing_group:
             self.routing_group = routing_group
         else:
-            self.routing_group = getenv('BULKSMS_DEFAULT_ROUTING', DEFAULT_ROUTING_GROUP)
-        self.routing_group = self.routing_group.upper()
-        if self.routing_group not in ROUTING_GROUPS:
-            raise ValueError(f"Invalid routing_group '{routing_group}': valid choices are {ROUTING_GROUPS}")
-        assert self.routing_group in ROUTING_GROUPS
+            self.routing_group = getenv('BULKSMS_DEFAULT_ROUTING')
+        if self.routing_group is not None:
+            self.routing_group = self.routing_group.upper()
+            if self.routing_group not in ROUTING_GROUPS:
+                raise ValueError(f"Invalid routing_group '{routing_group}': valid choices are {ROUTING_GROUPS}")
 
     def get_headers(self) -> Mapping[str, str]:
         """Generate generic request headers, e.g. with authentication data.
@@ -126,12 +125,12 @@ class BulkSMS:
             return self.sender
         return normalize_recipient(sender)
 
-    def get_routing_group(self, priority: bool=False) -> str:
+    def get_routing_group(self, priority: bool=False) -> Optional[str]:
         """Return the routing group to use based on local configuration and requested priority.
         
         :param priority:    Set to True to get name of highest-priority routing group; False to use session-default.
 
-        :return:    Name of routing group to use.
+        :return:    Name of routing group to use, or None if no preference available.
         """
         if priority:
             return ROUTING_GROUPS[-1]
@@ -140,10 +139,11 @@ class BulkSMS:
     def send(self, recipients: Union[str,Iterable[str]], content: str, sender: Optional[str]=None, priority: bool=False) -> Iterable[str]:
         """Send message to some recipients.
 
-        Plain text messages fit up to 160 characters per message. Messages with one or more UTF-8 characters fit
-        up to 70 characters per message. The method automatically detects the optimal encoding.
+        Plain text messages fit up to 160 characters per message. Messages with one or more UTF-8
+        characters fit up to 70 characters per message. The method automatically detects the optimal
+        encoding.
 
-        :param recipients:	Recipient or list of recipients to send to, either as mobile number or alphanumeric name.
+        :param recipients:	Recipient(s) to deliver to, either as mobile number or alphanumeric name.
         :param content:		Text of the message to send; may contain UTF-8 characters.
         :param sender:		Sender ID to override the session-default Sender ID, used if this is left unset.
         :param priority:	Whether the message should be sent requesting the top priority routing, or with the session-default routing priority.
@@ -164,8 +164,10 @@ class BulkSMS:
             'to': recipients,
             'encoding': enc_type,
             'body': content,
-            'routingGroup': self.get_routing_group(priority)
         }
+        rgroup = self.get_routing_group(priority)
+        if rgroup is not None:
+            params['routingGroup'] = rgroup
         if sender or self.sender:
             params['from'] = normalize_recipient(sender) if sender else self.sender
         try:

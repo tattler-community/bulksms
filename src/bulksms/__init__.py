@@ -14,4 +14,4 @@ Usage:
     bsms.msg_status(res)
 """
 
-from .api import BulkSMS, DEFAULT_ROUTING_GROUP
+from .api import BulkSMS

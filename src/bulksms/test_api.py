@@ -8,7 +8,7 @@ import urllib.request
 import base64
 from unittest import mock
 
-from bulksms.api import BulkSMS, ROUTING_GROUPS, DEFAULT_ROUTING_GROUP
+from bulksms.api import BulkSMS, ROUTING_GROUPS
 
 class BulkSMSTest(unittest.TestCase):
 
@@ -23,13 +23,12 @@ class BulkSMSTest(unittest.TestCase):
 
     def test_constructor_fails_invalid_routing_envvar(self):
         """Constructor takes raises if routing group is invalid"""
-        # with mock.patch('bulksms.api.DEFAULT_ROUTING_GROUP', new='foogroup'):
         with self.assertRaises(ValueError) as err:
             BulkSMS('tokid', 'tokpass', routing_group='foogroup')
         self.assertIn('routing_group', str(err.exception))
 
     def test_constructor_takes_routing_group_envvar(self):
-        """Constructor takes routing group from envvar before default"""
+        """Constructor takes routing group from envvar"""
         with mock.patch('bulksms.api.getenv') as menv:
             for rgroup in ROUTING_GROUPS:
                 menv.side_effect = lambda k,v=None: {'BULKSMS_DEFAULT_ROUTING': rgroup }.get(k, os.getenv(k, v))
@@ -38,14 +37,12 @@ class BulkSMSTest(unittest.TestCase):
                 self.assertEqual(1, menv.call_count)
                 menv.reset_mock()
 
-    def test_constructor_honors_default_routing_group_envvar(self):
-        """Constructor takes routing group from envvar before default"""
+    def test_constructor_holds_no_default_routing(self):
+        """Constructor sets no default routing group unless preference is expressed"""
         with mock.patch('bulksms.api.getenv') as menv:
-            for rgroup in ROUTING_GROUPS:
-                menv.side_effect = lambda k,v=None: {'BULKSMS_DEFAULT_ROUTING': v }.get(k, os.getenv(k, v))
-                with mock.patch('bulksms.api.DEFAULT_ROUTING_GROUP', new=rgroup):
-                    bsms = BulkSMS('ti', 'ts')
-                    self.assertEqual(rgroup, bsms.get_routing_group())
+            menv.side_effect = lambda k,v=None: {'BULKSMS_DEFAULT_ROUTING': v }.get(k, os.getenv(k, v))
+            bsms = BulkSMS('ti', 'ts')
+            self.assertIsNone(bsms.get_routing_group())
 
     def test_constructor_honors_sender(self):
         """Constructor honors sender argument"""
@@ -80,8 +77,7 @@ class BulkSMSTest(unittest.TestCase):
             self.assertIn("to", jdata)
             self.assertIsInstance(jdata["to"], list)
             self.assertEqual(["+1234"], jdata['to'])
-            self.assertIn("routingGroup", jdata)
-            self.assertEqual(DEFAULT_ROUTING_GROUP, jdata["routingGroup"])
+            self.assertNotIn("routingGroup", jdata, msg="routingGroup requested to API even though no routing group preference expressed""")
 
     def test_send_accepts_single_recipient_str(self):
         """send() accepts a single recipient"""
